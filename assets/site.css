@@ -95,19 +95,19 @@ p { margin: 0 0 1em; max-width: 68ch; }
 @media (max-width: 520px) { .top-r .cta { display: none; } }
 
 /* Erou: „my” + destinația, ca în logo */
-.hero { position: relative; min-height: min(86vh, 820px); display: flex; align-items: flex-end; color: var(--white); overflow: hidden; background: var(--ink); }
+.hero { position: relative; min-height: max(560px, min(86vh, 820px)); display: flex; align-items: flex-end; color: var(--white); overflow: hidden; background: var(--ink); }
 .hero-img { position: absolute; inset: 0; }
-.hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
+.hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
 .hero-img img.on { opacity: 1; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(34,31,31,.08) 0%, rgba(34,31,31,.10) 38%, rgba(34,31,31,.78) 100%), linear-gradient(90deg, rgba(34,31,31,.45) 0%, rgba(34,31,31,0) 60%); }
-.hero .wrap { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(120px, 16vw, 190px); }
-.hero h1 { color: var(--white); font-size: clamp(60px, 13vw, 176px); line-height: .9; letter-spacing: -0.045em; font-weight: 800; text-transform: lowercase; }
+.hero .wrap { position: relative; z-index: 2; width: 100%; padding-top: clamp(56px, 9vh, 110px); padding-bottom: clamp(120px, 16vw, 190px); }
+.hero h1 { color: var(--white); font-size: clamp(56px, min(13vw, 19vh), 176px); line-height: .9; letter-spacing: -0.045em; font-weight: 800; text-transform: lowercase; }
 .hero h1 .my { color: var(--or); }
 .hero h1 .w { display: inline-block; min-width: 4ch; transition: opacity .35s, transform .35s; }
 .hero h1 .w.out { opacity: 0; transform: translateY(.12em); }
 .hero .lead { color: #fff; margin-top: 18px; text-shadow: 0 1px 14px rgba(0,0,0,.45); }
 .hero-s { min-height: min(62vh, 560px); }
-.hero-s h1 { font-size: clamp(52px, 10vw, 128px); }
+.hero-s h1 { font-size: clamp(48px, min(10vw, 15vh), 128px); }
 .crumbs { font-size: 14px; color: rgba(255,255,255,.85); margin-bottom: 14px; }
 .crumbs a { text-decoration: none; }
 .crumbs a:hover { text-decoration: underline; }
@@ -355,3 +355,37 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .wa-float:hover { transform: scale(1.06); }
 @media (max-width: 860px) { .wa-float { display: none; } }
 .dock a svg[fill="currentColor"] { width: 24px; height: 24px; }
+
+/* WhatsApp pe carduri */
+.btn-wa { background: #25D366; color: #fff; }
+.btn-wa:hover { background: #1EBE5A; }
+.btn-wa svg { width: 20px; height: 20px; }
+.hbtns { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-top: 16px !important; }
+.hcard .hbtns { margin-top: 14px; }
+/* Plecări otpusk: blocul otpusk e ascuns (doar date); cardurile noastre */
+.os-hot { position: absolute !important; width: 1200px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; left: -9999px; }
+.ocards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.ocards:empty { display: none; }
+.ocard { background: var(--white); border-radius: var(--r-photo); overflow: hidden; display: flex; flex-direction: column; border: 1px solid var(--line); }
+.ocard-img { position: relative; display: block; aspect-ratio: 4 / 3; background: var(--soft); overflow: hidden; }
+.ocard-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.ocard:hover .ocard-img img { transform: scale(1.04); }
+.ocard-food { position: absolute; left: 12px; top: 12px; background: var(--or); color: var(--ink); font: 700 13px/1 var(--display); padding: 8px 11px; border-radius: 999px; text-transform: capitalize; }
+.ocard-b { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.ocard-b h3 { font-size: 20px; }
+.ocard-b p { margin: 0; }
+.ocard .hloc { color: var(--mute); font-size: 14px; }
+.ocard .st { color: var(--or); letter-spacing: 1px; }
+.ocard-when { color: var(--ink-2); font-size: 15px; }
+.ocard-price { margin-top: auto !important; padding-top: 6px; font-size: 14px; color: var(--mute); }
+.ocard-price b { font: 800 26px/1 var(--display); color: var(--ink); letter-spacing: -0.02em; margin-right: 4px; }
+.ocard .btn { margin-top: 10px; width: 100%; }
+@media (max-width: 900px) { .ocards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ocards { grid-template-columns: 1fr; } }
+.hot-empty { background: var(--white); border-radius: var(--r-panel); padding: clamp(20px, 3vw, 30px); display: grid; gap: 14px; justify-items: start; max-width: 720px; }
+.hot-empty p { margin: 0; }
+
+[hidden] { display: none !important; }
+
+/* titlurile din panourile albe aflate în secțiuni închise la culoare */
+.sec-ink .quiz-box h3, .sec-ink .form h3 { color: var(--ink); }

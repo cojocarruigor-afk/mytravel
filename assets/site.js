@@ -30,7 +30,9 @@
     var imgs = $$('.hero-img img', hero), w = $('.w', hero), names = JSON.parse(hero.getAttribute('data-rotate')), i = 0;
     if (imgs.length > 1 && w) setInterval(function () {
       if (document.hidden) return;
-      i = (i + 1) % imgs.length;
+      var nx = (i + 1) % imgs.length;
+      if (!imgs[nx].complete || !imgs[nx].naturalWidth) return; /* următoarea poză nu s-a încărcat încă: așteptăm */
+      i = nx;
       w.classList.add('out');
       setTimeout(function () {
         imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); });
@@ -40,7 +42,7 @@
     }, 4200);
   }
   /* pozele din erou se încarcă după prima */
-  $$('.hero-img img[data-src]').forEach(function (im) { setTimeout(function () { im.src = im.getAttribute('data-src'); }, 1200); });
+  $$('.hero-img img[data-src]').forEach(function (im, k) { setTimeout(function () { im.src = im.getAttribute('data-src'); }, 900 + k * 500); });
 
   /* Săgețile rândurilor glisante */
   $$('[data-rail]').forEach(function (nav) {
@@ -113,5 +115,42 @@
       var d = $('#cerere [name=destinatie]');
       if (d) d.value = a.getAttribute('data-ask');
     });
+  });
+
+  /* Plecări otpusk: blocul otpusk e doar sursa de date (ascuns). Desenăm cardurile noastre:
+     doar țara paginii, 5*, all inclusive / ultra all inclusive; fiecare card duce pe WhatsApp cu oferta completată. */
+  $$('.os-hot').forEach(function (box) {
+    var d = box.dataset, names = (d.tara || '').toLowerCase().split('|').filter(Boolean);
+    var out = box.parentNode.querySelector('.ocards'), empty = box.parentNode.querySelector('.hot-empty'), t = null, seen = '';
+    var tx = function (it, s) { var e = it.querySelector(s); return e ? e.textContent.replace(/\s+/g, ' ').trim() : ''; };
+    var esc = function (v) { return String(v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    function draw() {
+      var items = $$('.new-hot-tour-item', box), cards = [];
+      items.forEach(function (it) {
+        var a = it.closest('a') || it.querySelector('a'), href = a ? (a.getAttribute('href') || '') : '';
+        var geo = tx(it, '.new-hot-tour-img-geo'), name = tx(it, '.new-hot-tour-name'), food = tx(it, '.new-hot-tour-food');
+        var date = tx(it, '.new-hot-tour-date'), price = tx(it, '.new-hot-tour-price-value'), per = tx(it, '.new-hot-tour-price-desc');
+        var img = it.querySelector('img'), src = img ? (img.getAttribute('src') || img.getAttribute('data-src') || '') : '';
+        var stars = it.querySelectorAll('.new-hot-tour-stars > *').length - it.querySelectorAll('.new-hot-tour-stars .new-hot-tour-star-gray').length;
+        var g = geo.toLowerCase();
+        var okTara = d.taraId ? new RegExp('[#!&]i=' + d.taraId + '(&|$)').test(href) : names.some(function (n) { return g.indexOf(n) === 0; });
+        if (!(okTara && stars >= 5 && /all inclusive|всё включено|все включено/i.test(food))) return;
+        var m = date.match(/^(\d+\s+\S+)\s+\S+\s+(\d+)/), when = m ? d.plec.replace('{d}', m[1]).replace('{n}', m[2]) : date;
+        var msg = d.waText.replace('{h}', name).replace('{g}', geo).replace('{f}', food).replace('{d}', date).replace('{p}', price);
+        var url = d.wa ? d.wa + encodeURIComponent(msg) : '#cerere';
+        var tgt = d.wa ? ' target="_blank" rel="noopener"' : '';
+        cards.push('<article class="ocard"><a class="ocard-img" href="' + esc(url) + '"' + tgt + '>' + (src ? '<img src="' + esc(src) + '" alt="' + esc(name) + '" loading="lazy">' : '') +
+          '<span class="ocard-food">' + esc(food) + '</span></a><div class="ocard-b"><p class="hloc">' + esc(geo) + ' · <span class="st" aria-label="5*">★★★★★</span></p>' +
+          '<h3>' + esc(name) + '</h3><p class="ocard-when">' + esc(when) + '</p><p class="ocard-price"><b>' + esc(price) + '</b> ' + esc(per || d.per) + '</p>' +
+          '<a class="btn btn-wa btn-sm" href="' + esc(url) + '"' + tgt + '>' + d.waIcon + esc(d.waBtn) + '</a></div></article>');
+      });
+      var key = cards.join('');
+      if (key === seen) return;
+      seen = key;
+      out.innerHTML = key;
+      if (empty) empty.hidden = cards.length > 0;
+    }
+    new MutationObserver(function () { clearTimeout(t); t = setTimeout(draw, 300); }).observe(box, { childList: true, subtree: true });
+    setTimeout(function () { draw(); if (empty && !out.children.length) empty.hidden = false; }, 9000);
   });
 })();
