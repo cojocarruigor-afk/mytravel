@@ -447,3 +447,6 @@ p { margin: 0 0 1em; max-width: 68ch; }
 }
 @media (max-width: 860px) { .oameni { grid-template-columns: 1fr; } }
 .sec-ink .lead { color: rgba(255,255,255,.82); }
+
+.om-ph { position: relative; }
+.om-ph .ilu { position: absolute; right: 10px; bottom: 10px; background: rgba(34,31,31,.7); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 999px; }
