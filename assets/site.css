@@ -450,3 +450,18 @@ p { margin: 0 0 1em; max-width: 68ch; }
 
 .om-ph { position: relative; }
 .om-ph .ilu { position: absolute; right: 10px; bottom: 10px; background: rgba(34,31,31,.7); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 999px; }
+
+/* Despre (limbajul paginii principale) */
+.sheet-man { display: grid; gap: 26px; }
+.sheet-man .man { font: 700 clamp(22px, 2.6vw, 34px)/1.22 var(--display); letter-spacing: -0.02em; margin: 0; max-width: 32ch; }
+.sheet-man .man b { color: var(--or-3); }
+.sheet-man .facts { border-bottom: 0; }
+.echipa-g { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.ocm { display: flex; flex-direction: column; gap: 14px; }
+.ocm-ph { aspect-ratio: 4 / 5; }
+.ocm-ph .ilu { position: absolute; right: 12px; top: 12px; z-index: 3; background: rgba(34,31,31,.7); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 999px; }
+.ocm blockquote { margin: 0; font: 600 18px/1.45 var(--body); color: var(--ink); }
+.ocm blockquote cite { display: block; margin-top: 6px; font: 400 13px/1.3 var(--body); color: var(--mute); font-style: normal; }
+.ocm .btn { align-self: flex-start; }
+.steps6 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 44px; }
+@media (max-width: 860px) { .echipa-g, .steps6 { grid-template-columns: 1fr; } }
