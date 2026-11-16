@@ -402,3 +402,19 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .hbtns .cere { grid-column: 1 / -1; }
 .hcard > div { display: flex; flex-direction: column; }
 .hcard .hbtns { margin-top: auto; padding-top: 14px; }
+
+/* Despre noi */
+.manifest { padding: clamp(56px, 8vw, 110px) 0; }
+.manifest p { font: 700 clamp(26px, 3.6vw, 46px)/1.18 var(--display); letter-spacing: -0.02em; max-width: 26ch; margin: 0; color: var(--ink); }
+.manifest b { color: var(--or-3); font-weight: 800; }
+.proms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.prom { background: var(--white); border-radius: var(--r-photo); overflow: hidden; }
+.prom img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.prom > div { padding: 20px 22px 24px; }
+.prom h3 { margin-bottom: 8px; }
+.prom p { margin: 0; color: var(--ink-2); }
+.bigqs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.bigq { margin: 0; border-top: 3px solid var(--or); padding-top: 18px; }
+.bigq blockquote { margin: 0; font: 600 clamp(19px, 1.8vw, 23px)/1.4 var(--body); color: var(--ink); }
+.bigq figcaption { margin-top: 12px; color: var(--mute); font-size: 14px; }
+@media (max-width: 860px) { .proms, .bigqs { grid-template-columns: 1fr; } }
