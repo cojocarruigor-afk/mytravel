@@ -491,3 +491,5 @@ p { margin: 0 0 1em; max-width: 68ch; }
   .dtab-list button { font-size: 15px; padding: 10px 14px; }
 }
 .dpanel .dnum { color: var(--or); }
+
+.dart svg { display: block; width: 100%; height: auto; }
