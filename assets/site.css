@@ -469,3 +469,25 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .ocm { display: grid; grid-template-rows: auto 1fr auto; }
 .ocm-ph .t span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
 .ocm .btn { align-self: end; justify-self: start; }
+
+/* Despre: tab-urile drumului */
+.dtabs { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.dtab-list { display: grid; gap: 6px; }
+.dtab-list button { display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 16px; border-radius: 18px; border: 1px solid transparent; background: transparent; cursor: pointer; font: 700 17px/1.25 var(--display); color: var(--ink-2); }
+.dtab-list button span { flex: none; width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; background: var(--white); border: 2px solid var(--line); font-size: 16px; }
+.dtab-list button:hover { background: var(--white); }
+.dtab-list button[aria-selected="true"] { background: var(--white); border-color: var(--line); color: var(--ink); box-shadow: 0 8px 24px rgba(34,31,31,.08); }
+.dtab-list button[aria-selected="true"] span { background: var(--or); border-color: var(--or); }
+.dpanel { background: var(--white); border-radius: var(--r-panel); overflow: hidden; }
+.dpanel img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.dpanel > div { padding: clamp(20px, 3vw, 32px); }
+.dnum { font: 800 56px/1 var(--display); color: var(--or); margin: 0 0 8px; letter-spacing: -0.04em; }
+.dnum small { font-size: 20px; color: var(--mute); }
+.dpanel h3 { font-size: clamp(24px, 2.6vw, 32px); margin-bottom: 10px; }
+.dpanel p { color: var(--ink-2); }
+@media (max-width: 860px) {
+  .dtabs { grid-template-columns: 1fr; }
+  .dtab-list { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; padding-bottom: 6px; }
+  .dtab-list button { font-size: 15px; padding: 10px 14px; }
+}
+.dpanel .dnum { color: var(--or); }

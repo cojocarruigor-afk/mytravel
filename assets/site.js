@@ -153,4 +153,20 @@
     new MutationObserver(function () { clearTimeout(t); t = setTimeout(draw, 300); }).observe(box, { childList: true, subtree: true });
     setTimeout(function () { draw(); if (empty && !out.children.length) empty.hidden = false; }, 9000);
   });
+
+  /* Tab-uri („Drumul tău cu noi”): click și săgeți */
+  $$('.dtabs').forEach(function (w) {
+    var tabs = $$('[role=tab]', w), panels = $$('[role=tabpanel]', w);
+    function sel(i) {
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach(function (p, k) { p.hidden = k !== i; });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { sel(i); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return; e.preventDefault(); var n = (i + d + tabs.length) % tabs.length; sel(n); tabs[n].focus();
+      });
+    });
+  });
 })();
