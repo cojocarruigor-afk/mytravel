@@ -493,3 +493,16 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .dpanel .dnum { color: var(--or); }
 
 .dart svg { display: block; width: 100%; height: auto; }
+
+/* Contact: canale */
+.canale { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.canal { display: flex; flex-direction: column; gap: 6px; padding: 22px; border-radius: 20px; border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: transform .2s, box-shadow .2s, border-color .2s; }
+.canal:hover { transform: translateY(-3px); border-color: var(--or); box-shadow: 0 12px 28px rgba(34,31,31,.1); }
+.canal .ci { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; background: var(--or); color: var(--ink); margin-bottom: 8px; }
+.canal .ci svg { width: 24px; height: 24px; }
+.canal-whatsapp .ci { background: #25D366; } .canal-telegram .ci { background: #2AABEE; color: #fff; }
+.canal .cl { font-size: 13px; color: var(--mute); }
+.canal b { font: 800 19px/1.2 var(--display); word-break: break-word; }
+.canal small { color: var(--ink-2); font-size: 14px; }
+@media (max-width: 860px) { .canale { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .canale { grid-template-columns: 1fr; } }
