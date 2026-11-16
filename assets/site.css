@@ -465,3 +465,7 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .ocm .btn { align-self: flex-start; }
 .steps6 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 44px; }
 @media (max-width: 860px) { .echipa-g, .steps6 { grid-template-columns: 1fr; } }
+
+.ocm { display: grid; grid-template-rows: auto 1fr auto; }
+.ocm-ph .t span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.ocm .btn { align-self: end; justify-self: start; }
