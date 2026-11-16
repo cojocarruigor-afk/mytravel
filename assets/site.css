@@ -418,3 +418,32 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .bigq blockquote { margin: 0; font: 600 clamp(19px, 1.8vw, 23px)/1.4 var(--body); color: var(--ink); }
 .bigq figcaption { margin-top: 12px; color: var(--mute); font-size: 14px; }
 @media (max-width: 860px) { .proms, .bigqs { grid-template-columns: 1fr; } }
+
+/* Despre: echipa */
+.oameni { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.om { background: #2C2828; border-radius: var(--r-panel); overflow: hidden; display: flex; flex-direction: column; }
+.om-ph { aspect-ratio: 4 / 3; background: linear-gradient(160deg, var(--or) 0%, var(--or-3) 100%); display: grid; place-items: center; }
+.om-ph img { width: 100%; height: 100%; object-fit: cover; }
+.om .mono { font: 800 120px/1 var(--display); color: var(--ink); letter-spacing: -0.05em; }
+.om-b { padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.om-b h3 { color: var(--white); font-size: 26px; }
+.om-rol { margin: 0; color: var(--peach); font-weight: 700; font-size: 15px; }
+.om-dest { margin: 0; color: rgba(255,255,255,.75); font-size: 15px; }
+.om blockquote { margin: 12px 0 14px; color: var(--white); font: 600 17px/1.45 var(--body); }
+.om blockquote cite { display: block; margin-top: 6px; font: 400 13px/1.3 var(--body); color: rgba(255,255,255,.6); font-style: normal; }
+.om .btn { margin-top: auto; align-self: flex-start; }
+/* Despre: drumul clientului */
+.drum { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 0; }
+.drum::before { content: ""; position: absolute; left: 34px; top: 10px; bottom: 10px; width: 3px; background: linear-gradient(var(--or), var(--peach)); border-radius: 3px; }
+.drum li { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 24px; padding: 0 0 34px; position: relative; }
+.drum .d-n { width: 72px; height: 72px; border-radius: 999px; background: var(--white); border: 3px solid var(--or); display: grid; place-items: center; font: 800 24px/1 var(--display); color: var(--ink); position: relative; z-index: 1; }
+.drum h3 { font-size: clamp(22px, 2.4vw, 30px); margin: 14px 0 6px; }
+.drum p { margin: 0; color: var(--ink-2); max-width: 60ch; }
+@media (min-width: 1000px) {
+  .drum { grid-template-columns: 1fr 1fr; column-gap: 60px; }
+  .drum::before { display: none; }
+  .drum li { border-top: 3px solid var(--or); padding-top: 22px; grid-template-columns: 60px minmax(0, 1fr); }
+  .drum .d-n { width: 60px; height: 60px; font-size: 20px; }
+}
+@media (max-width: 860px) { .oameni { grid-template-columns: 1fr; } }
+.sec-ink .lead { color: rgba(255,255,255,.82); }
