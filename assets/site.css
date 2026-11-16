@@ -389,3 +389,12 @@ p { margin: 0 0 1em; max-width: 68ch; }
 
 /* titlurile din panourile albe aflate în secțiuni închise la culoare */
 .sec-ink .quiz-box h3, .sec-ink .form h3 { color: var(--ink); }
+
+/* Cardurile de hotel: WhatsApp + Telegram, două butoane egale; text închis pentru contrast */
+.hbtns { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.hbtns .btn { width: 100%; padding: 0 12px; }
+.hbtns .btn:only-child { grid-column: 1 / -1; }
+.btn-wa, .wa-float { color: var(--ink) !important; }
+.btn-tg { background: #2AABEE; color: var(--ink); }
+.btn-tg:hover { background: #1E96D1; }
+.btn-tg svg { width: 18px; height: 18px; }
